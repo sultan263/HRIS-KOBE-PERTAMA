@@ -1,0 +1,100 @@
+<style>
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f1f4f6; margin: 0; }
+  
+  /* ================= LOGIN PAGE STYLING ================= */
+  #login-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #212529 0%, #17a2b8 100%);
+  }
+  .login-card {
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    padding: 40px;
+    border-top: 5px solid #17a2b8;
+  }
+  .login-logo { font-size: 3rem; color: #17a2b8; margin-bottom: 20px; }
+  .form-floating > .form-control:focus { border-color: #17a2b8; box-shadow: 0 0 0 0.25rem rgba(23, 162, 184, 0.25); }
+
+  /* ================= LAYOUT UTAMA ================= */
+  #wrapper { display: none; min-height: 100vh; align-items: flex-start; }
+  
+  #sidebar-wrapper { 
+    min-width: 260px; max-width: 260px; flex-shrink: 0; 
+    background-color: #212529 !important;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto; z-index: 1050;
+  }
+  
+  .sidebar-heading {
+    position: sticky; top: 0; z-index: 1060; background-color: #212529; 
+    border-bottom: 4px solid #17a2b8 !important; 
+  }
+  .list-group-item:hover { background-color: #343a40 !important; color: #17a2b8 !important; }
+  .submenu-text { font-size: 0.9rem; border-left: 3px solid transparent; }
+  .submenu-text:hover { border-left: 3px solid #17a2b8; background-color: #2b3035 !important; }
+  
+  #page-content-wrapper { flex-grow: 1; width: 100%; min-width: 0; display: flex; flex-direction: column; }
+  
+  .navbar { 
+    position: sticky; top: 0; z-index: 1040; 
+    border-bottom: 4px solid #dee2e6 !important; 
+    background-color: #ffffff;
+  }
+  
+  .sticky-control-panel {
+    position: sticky; top: 61px; z-index: 1030; background-color: #f1f4f6; 
+    padding-top: 15px; padding-bottom: 5px; margin-top: -15px; 
+  }
+
+  .card-header { position: sticky; top: 61px; z-index: 1020; border-bottom: 3px solid rgba(0,0,0,0.15) !important; }
+  .sticky-crosstab-title { position: sticky; top: 61px; background: #fff; z-index: 1020; border-bottom: 3px solid rgba(0,0,0,0.15) !important; margin-bottom: 0 !important; padding-bottom: 12px; }
+
+  /* ================= TABEL CROSSTAB ================= */
+  .freeze-table { max-height: 65vh; overflow-y: auto; overflow-x: auto; }
+  .freeze-table thead th { position: sticky; top: 0; z-index: 10; background-color: #212529 !important; color: white; border-bottom: 2px solid #454d55; }
+  .table-crosstab { border-collapse: collapse; }
+  .table-crosstab th, .table-crosstab td { border: 1px solid #343a40 !important; }
+  
+  .col-no { left: 0px !important; width: 45px !important; min-width: 45px !important; max-width: 45px !important; }
+  .col-nrpp { left: 45px !important; width: 110px !important; min-width: 110px !important; max-width: 110px !important; }
+  .col-nama { left: 155px !important; width: 240px !important; min-width: 240px !important; max-width: 240px !important; text-align: left !important; white-space: normal; }
+
+  #tblCrosstab .col-no, #tblCrosstab .col-nrpp, #tblCrosstab .col-nama { position: sticky !important; z-index: 5; background-color: #f8f9fa !important; border: 1px solid #343a40 !important; }
+  #tblCrosstab thead .col-no, #tblCrosstab thead .col-nrpp, #tblCrosstab thead .col-nama { z-index: 30 !important; background-color: #212529 !important; color: white; }
+  #tblCrosstab thead tr:nth-child(1) th { top: 0 !important; height: 45px !important; z-index: 20 !important; vertical-align: middle !important; }
+  #tblCrosstab thead tr:nth-child(2) th { top: 45px !important; height: 40px !important; z-index: 19 !important; vertical-align: middle !important; background-color: #f8f9fa !important; border-bottom: 2px solid #343a40; }
+  #tblCrosstab thead th.bg-dark { background-color: #212529 !important; color: #ffffff !important; }
+
+  /* WARNA STATUS */
+  .bg-status-h { background-color: #ffb6c1 !important; color: #000 !important; -webkit-print-color-adjust: exact; } 
+  .bg-status-s { background-color: #98fb98 !important; color: #000 !important; -webkit-print-color-adjust: exact; } 
+  .bg-status-st { background-color: #fffacd !important; color: #000 !important; -webkit-print-color-adjust: exact; } 
+  .bg-status-pg { background-color: #ff9999 !important; color: #000 !important; -webkit-print-color-adjust: exact; } 
+  .bg-status-vc { background-color: #87cefa !important; color: #000 !important; -webkit-print-color-adjust: exact; } 
+  .bg-status-c { background-color: #40e0d0 !important; color: #000 !important; -webkit-print-color-adjust: exact; }  
+  .bg-status-ln { background-color: #f87171 !important; color: #ffffff !important; -webkit-print-color-adjust: exact; } 
+  .bg-status-cb { background-color: #fdba74 !important; color: #000000 !important; -webkit-print-color-adjust: exact; } 
+
+  .doc-preview { background: white; width: 210mm; min-height: 297mm; padding: 20mm; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #ddd; color: #000; }
+  .doc-font { font-family: 'Arial', sans-serif; }
+  .border-bottom-double { border-bottom: 3px double #000; margin-bottom: 15px; }
+  .bg-gray-header { background-color: #d9d9d9 !important; color: black !important; -webkit-print-color-adjust: exact; }
+  .report-table { border: 1.5px solid #000 !important; margin-bottom: 20px; }
+  .report-table th, .report-table td { border: 1px solid #000 !important; padding: 5px 4px; }
+
+  @media print {
+    .no-print, #sidebar-wrapper, nav { display: none !important; }
+    body, #wrapper, #page-content-wrapper { background-color: white !important; margin: 0; padding: 0; }
+    .doc-preview { width: 100%; min-height: auto; padding: 0; margin: 0; box-shadow: none; border: none; }
+    .bg-gray-header { background-color: #d9d9d9 !important; -webkit-print-color-adjust: exact; }
+    #areaPreviewGaji { width: 100%; position: absolute; top: 0; left: 0; background: white; z-index: 999; }
+    .print-header-only { display: block !important; }
+    #tblPreviewGaji th { background-color: #d9d9d9 !important; color: black !important; -webkit-print-color-adjust: exact; }
+    @page { size: A4 portrait; margin: 1cm; }
+  }
+</style>
